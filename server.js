@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+const db = require('./models')
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -52,12 +53,12 @@ app.get('/problems/:id/solutions/:id', (req, res) => {
 
 //  Problems Index
 app.get('/api/problems', (req, res) => {
-    Problem.find({}, (err, allProblems) => {
+    db.Problem.find({}, (err, allProblems) => {
         if (err) {
-            return res.status(400).json({status:400, error: 'Something went wrong, please try again'})
-    }
-    res.json(allProblems)
- })
+            return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
+        }
+        res.json(allProblems)
+    })
 })
 
 // API endpoints: [
