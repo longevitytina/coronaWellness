@@ -48,7 +48,32 @@ app.get('/problems/:id/solutions/:id', (req, res) => {
     res.sendFile(__dirname + '/views/solutionsShow.html')
 })
 
+// ---------------------- API ROUTES
 
+//  Problems Index
+app.get('/api/problems', (req, res) => {
+    Problem.find({}, (err, allProblems) => {
+        if (err) {
+            return res.status(400).json({status:400, error: 'Something went wrong, please try again'})
+    }
+    res.json(allProblems)
+ })
+})
+
+// API endpoints: [
+//     { method: "GET", path: "/api", description: "homepage"},
+// //TODO { method: "GET", path: "/api/profile", description: "profile"},
+//     { method: "GET", path: "/api/problems", description: "problem index" },
+//     { method: "GET", path: "/api/problems/:id", description: "selected problem card" },
+//     { method: "GET", path: "/api/problems/:id/solutions", description: "index of solutions" },
+//     { method: "PUT", path: "/api/problems/:id/solution/:id", description: "view one solution card },
+//     { method: "POST", path: "/api/problems/:id/solution/:id", description: "Create a new solution" },
+//     { method: "DELETE", path: "/api/problems/:id/solution/:id", description: "Delete a solution" },
+//    //TODO
+//    //path for login modal
+//    //sign up modal
+//    //Serve the profile page and populate it with information from the database.
+//   ]
 
 // ---------------------- START SERVER
 app.listen(PORT, () => console.log('Server is running at localhost: 4000'));

@@ -9,4 +9,4 @@ const solutionSchema = new Schema({
 })
 
 const Solution = mongoose.model('Solution', solutionSchema)
-model.exports = Solution
+module.exports = Solution
