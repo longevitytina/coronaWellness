@@ -30,12 +30,22 @@ app.get('/', (req, res) => {
 
 // Index of Problems
 app.get('/problems', (req, res) => {
-	res.sendFile(__dirname + '/views/problemsIndex.html')
+    res.sendFile(__dirname + '/views/problemsIndex.html')
 })
 
 // A problem profile
 app.get('/problems/:id', (req, res) => {
-	res.sendFile(__dirname + '/views/problemsShow.html')
+    res.sendFile(__dirname + '/views/problemsShow.html')
+})
+
+// solutions index
+app.get('/problems/:id/solutions', (req, res) => {
+    res.sendFile(__dirname + '/views/solutionsIndex.html')
+})
+
+//solution profile
+app.get('/problems/:id/solutions/:id', (req, res) => {
+    res.sendFile(__dirname + '/views/solutionsShow.html')
 })
 
 
