@@ -28,6 +28,9 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.html')
 })
 
+app.get('/problems', (req, res) => {
+	res.sendFile(__dirname + '/views/problemsIndex.html')
+})
 
 // ---------------------- START SERVER
 app.listen(PORT, () => console.log('Server is running at localhost: 4000'));
