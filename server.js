@@ -61,6 +61,17 @@ app.get('/api/problems', (req, res) => {
     })
 })
 
+// Problem Show
+app.get('/api/problems/:id', (req, res) => {
+    db.Problem.findById(req.params.id, (err, foundProblem) => {
+        if (err) {
+            return res.status(400).json({status: 400, error: 'Something went wrong, please try again'});
+        }
+
+        res.json(foundProblem)
+    })
+})
+
 // API endpoints: [
 //     { method: "GET", path: "/api", description: "homepage"},
 // //TODO { method: "GET", path: "/api/profile", description: "profile"},
