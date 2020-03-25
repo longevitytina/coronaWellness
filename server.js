@@ -84,6 +84,25 @@ app.post('/api/problems', (req, res) => {
 })
 
 // update problem
+app.put('/api/problems/:id/edit', (req, res) => {
+    // find by ID
+    db.Problem.findById(req.params.id, (err, foundProblem) => {
+      if (err) {
+        return res.status(400).json({ status: 400, error: 'please try agin' })
+      }
+      // update record info
+      foundProblem.name = req.body.name
+      foundProblem.description = req.body.description
+      console.log(req.body.name)
+      // save modified problem
+      foundProblem.save((err, savedProblem) => {
+        if (err) {
+          return res.status(400).json({ status: 400, error: 'please try agin' })
+        }
+        res.json(savedProblem)
+      })
+    })
+  })
 
 
 // delete problem
