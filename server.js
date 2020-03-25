@@ -73,6 +73,23 @@ app.get('/api/problems/:id', (req, res) => {
     })
 })
 
+// create problem
+app.post('/api/problems', (req, res) => {
+    db.Problem.create(req.body, (err, newProblem) => {
+        if (err) {
+            return res.status(400).json({status:400, error: 'Something went wrong, please try again'})
+        }
+        res.status(201).json(newProblem)
+    })
+})
+
+// update problem
+
+
+// delete problem
+
+
+
 // API endpoints: [
 //     { method: "GET", path: "/api", description: "homepage"},
 // //TODO { method: "GET", path: "/api/profile", description: "profile"},
