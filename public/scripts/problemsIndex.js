@@ -25,7 +25,7 @@ fetch(`${API_BASE}/problems`)
               ${problem.name} 
             </h5>
             <p class="card-text">${problem.description}</p>
-            <a href="#" class="btn btn-primary float-right">View</a>
+            <a href="/problems/${problems._id}" class="btn btn-primary float-right">View</a>
           </div>
         </div>
       </div>
