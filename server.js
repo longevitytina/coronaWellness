@@ -77,7 +77,7 @@ app.get('/api/problems/:id', (req, res) => {
 app.post('/api/problems', (req, res) => {
     db.Problem.create(req.body, (err, newProblem) => {
         if (err) {
-            return res.status(400).json({status:400, error: 'Something went wrong, please try again'})
+            return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
         }
         res.status(201).json(newProblem)
     })
@@ -87,32 +87,96 @@ app.post('/api/problems', (req, res) => {
 app.put('/api/problems/:id/edit', (req, res) => {
     // find by ID
     db.Problem.findById(req.params.id, (err, foundProblem) => {
-      if (err) {
-        return res.status(400).json({ status: 400, error: 'please try agin' })
-      }
-      // update record info
-      foundProblem.name = req.body.name
-      foundProblem.description = req.body.description
-      console.log(req.body.name)
-      // save modified problem
-      foundProblem.save((err, savedProblem) => {
         if (err) {
-          return res.status(400).json({ status: 400, error: 'please try agin' })
+            return res.status(400).json({ status: 400, error: 'please try agin' })
         }
-        res.json(savedProblem)
-      })
+        // update record info
+        foundProblem.name = req.body.name
+        foundProblem.description = req.body.description
+        console.log(req.body.name)
+        // save modified problem
+        foundProblem.save((err, savedProblem) => {
+            if (err) {
+                return res.status(400).json({ status: 400, error: 'please try agin' })
+            }
+            res.json(savedProblem)
+        })
     })
-  })
+})
 
 // delete problem
 app.delete('/api/problems/:id', (req, res) => {
     db.Problem.findByIdAndDelete(req.params.id, (err, deletedProblem) => {
         if (err) {
             return res.status(400).json({ status: 400, error: 'please try agin' })
-          }
-          res.json(deletedProblem)
+        }
+        res.json(deletedProblem)
     })
 })
+
+//  Solutions Index
+app.get('/api/solutions', (req, res) => {
+    db.Solution.find({}, (err, allsolutions) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
+        }
+        res.json(allsolutions)
+    })
+})
+
+// Solutions Show
+app.get('/api/solutions/:id', (req, res) => {
+    // console.log('sanity check', req.params)
+    db.Solution.findById(req.params.id, (err, foundSolution) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' });
+        }
+
+        res.json(foundSolution)
+    })
+})
+
+// Solution create
+app.post('/api/solutions', (req, res) => {
+    db.Solution.create(req.body, (err, newSolution) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
+        }
+        res.status(201).json(newSolution)
+    })
+})
+
+// update solution
+app.put('/api/solutions/:id/edit', (req, res) => {
+    // find by ID
+    db.Solution.findById(req.params.id, (err, foundSolution) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'please try agin' })
+        }
+        // update record info
+        foundSolution.name = req.body.name
+        foundSolution.description = req.body.description
+        console.log(req.body.name)
+        // save modified Solution
+        foundSolution.save((err, savedSolution) => {
+            if (err) {
+                return res.status(400).json({ status: 400, error: 'please try agin' })
+            }
+            res.json(savedSolution)
+        })
+    })
+})
+
+// delete solution
+app.delete('/api/solutions/:id', (req, res) => {
+    db.Solution.findByIdAndDelete(req.params.id, (err, deletedSolution) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'please try agin' })
+        }
+        res.json(deletedSolution)
+    })
+})
+
 
 
 // API endpoints: [
