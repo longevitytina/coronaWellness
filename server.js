@@ -104,9 +104,15 @@ app.put('/api/problems/:id/edit', (req, res) => {
     })
   })
 
-
 // delete problem
-
+app.delete('/api/problems/:id', (req, res) => {
+    db.Problem.findByIdAndDelete(req.params.id, (err, deletedProblem) => {
+        if (err) {
+            return res.status(400).json({ status: 400, error: 'please try agin' })
+          }
+          res.json(deletedProblem)
+    })
+})
 
 
 // API endpoints: [
