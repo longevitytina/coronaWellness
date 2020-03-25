@@ -61,53 +61,51 @@ const solutions = [
 
 
 
-// // Delete All Problems
-// console.log('Deleting all problems...')
+// Delete All Problems
+console.log('Deleting all problems...')
 
-// db.Problem.deleteMany({}, (err, result) => {
-//   if (err) {
-//     console.log(err)
-//     process.exit()
-//   }
-
-
-//   console.log(`Successfully deleted ${result.deletedCount} problems.`)
-
-//   // Create New Problems
-//   console.log('Creating new problems...')
-
-//   db.Problem.create(problems, (err, newProblems) => {
-//     if (err) {
-//       console.log(err)
-//       process.exit()
-//     }
-
-//     console.log(`Successfully created ${newProblems.length} problems.`)
-//     console.log(newProblems)
-//     process.exit()
-//   })
-// })
+db.Problem.deleteMany({}, (err, result) => {
+  if (err) {
+    console.log(err)
+    process.exit()
+  }
 
 
-// console.log('Deleting all solutions...')
+  console.log(`Successfully deleted ${result.deletedCount} problems.`)
 
-// db.Solution.deleteMany({}, (err, result) => {
-//   if (err) {
-//     console.log(err)
-//     process.exit()
-//   }
-// })
+  // Create New Problems
+  console.log('Creating new problems...')
 
-// // Create New Solutions
-// console.log('Creating new solutions...')
+  db.Problem.create(problems, (err, newProblems) => {
+    if (err) {
+      console.log(err)
+      process.exit()
+    }
 
-// db.Solution.create(solutions, (err, newSolutions) => {
-//   if (err) {
-//     console.log(err)
-//     process.exit()
-//   }
+    console.log(`Successfully created ${newProblems.length} problems.`)
+    console.log(newProblems)
 
-//   console.log(`Successfully created ${newSolutions.length} solutions.`)
-//   console.log(newSolutions)
-//   process.exit()
-// })
+    console.log('Deleting all solutions...')
+
+  db.Solution.deleteMany({}, (err, result) => {
+    if (err) {
+      console.log(err)
+      process.exit()
+    }
+      // Create New Solutions
+  console.log('Creating new solutions...')
+    db.Solution.create(solutions, (err, newSolutions) => {
+      if (err) {
+        console.log(err)
+        process.exit()
+      }
+  
+      console.log(`Successfully created ${newSolutions.length} solutions.`)
+      console.log(newSolutions)
+      process.exit()
+      })
+    })
+  })
+})
+
+
