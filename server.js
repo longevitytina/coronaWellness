@@ -189,7 +189,7 @@ app.post('/api/problems/:id/solutions', (req, res) => {
     //         return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
     //     }
 
-    db.Solution.find({ name: 'smuding' }, (err, foundSolutions) => {
+    db.Solution.find({ name: { $in: ['Crystal', 'Meditation'] } }, (err, foundSolutions) => {
         if (err) {
             console.log(err)
             process.exit
