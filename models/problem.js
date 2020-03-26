@@ -1,16 +1,12 @@
 const mongoose = require('mongoose')
+const Solution = require('./solution')
 Schema = mongoose.Schema
 
 const ProblemSchema = new Schema({
     name: String,
     description: String,
     image: String,
-    solutions: [
-        {
-            type: mongoose.Types.ObjectId,
-            ref: 'Solution'
-        }
-    ],
+    solutions: [Solution.schema],
 })
 
 const Problem = mongoose.model('Problem', ProblemSchema)

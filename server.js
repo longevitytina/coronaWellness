@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 
-// ---------------------- ROUTES
+// ---------------------- HTML ROUTES
 
 // Serve static files from the `/public` directory
 app.use(express.static('public'))
@@ -176,6 +176,55 @@ app.delete('/api/solutions/:id', (req, res) => {
         res.json(deletedSolution)
     })
 })
+
+
+
+// ---------------------------------associated paths
+
+
+//Creates solution index for specific problem
+app.post('/api/problems/:id/solutions', (req, res) => {
+    // db.Solution.create(req.body, (err, newSolution) => {
+    //     if (err) {
+    //         return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
+    //     }
+
+    db.Solution.find({ name: { $in: ['Crystal', 'Meditation'] } }, (err, foundSolutions) => {
+        if (err) {
+            console.log(err)
+            process.exit
+        }
+        console.log('foundSolutions:', foundSolutions)
+
+        // Find problem to associate solutions with
+        db.Problem.findById(req.params.id, (err, foundProblem) => {
+            console.log("db.problem: ", foundProblem)
+            if (err) {
+                return res.status(400).json({ status: 400, error: 'finding problem' })
+            }
+            // add solutions to problem
+            foundProblem.solutions.push(foundSolutions)
+
+            //Save modified problem
+            // foundProblem.save((err, savedProblem) => {
+            //     if (err) {
+            //         return res.status(400).json({ status: 400, error: 'saving problem' })
+            //     }
+            res.json(foundProblem)
+            process.exit()
+            // })
+        })
+    })
+})
+
+
+// Problem/:id/solution
+//POST:create route for solution form
+// PUT: update route edit button
+//DELETE:
+
+
+
 
 
 
