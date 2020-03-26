@@ -183,16 +183,16 @@ app.delete('/api/solutions/:id', (req, res) => {
 
 
 //Creates solution index for specific problem
-app.post('/api/problems/:id/solutions', (req, res) => {
+app.put('/api/problems/:id/solutions/:solutionId', (req, res) => {
     // db.Solution.create(req.body, (err, newSolution) => {
     //     if (err) {
     //         return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
     //     }
 
-    db.Solution.find({ name: { $in: ['Crystal', 'Meditation'] } }, (err, foundSolutions) => {
+    db.Solution.findById(req.params.solutionId, (err, foundSolutions) => {
         if (err) {
             console.log(err)
-            process.exit
+        
         }
         console.log('foundSolutions:', foundSolutions)
 
@@ -203,16 +203,17 @@ app.post('/api/problems/:id/solutions', (req, res) => {
                 return res.status(400).json({ status: 400, error: 'finding problem' })
             }
             // add solutions to problem
+            //foundProblem.solutions = foundSolutions
             foundProblem.solutions.push(foundSolutions)
-
+            console.log('found problem solution', foundProblem.solutions)
             //Save modified problem
-            // foundProblem.save((err, savedProblem) => {
-            //     if (err) {
-            //         return res.status(400).json({ status: 400, error: 'saving problem' })
-            //     }
+            foundProblem.save((err, savedProblem) => {
+                if (err) {
+                    return res.status(400).json({ status: 400, error: 'saving problem' })
+                }
             res.json(foundProblem)
-            process.exit()
-            // })
+           
+             })
         })
     })
 })
