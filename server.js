@@ -39,13 +39,13 @@ app.get('/problems/:id', (req, res) => {
     res.sendFile(__dirname + '/views/problemsShow.html')
 })
 
-// solutions index
-app.get('/problems/:id/solutions', (req, res) => {
-    res.sendFile(__dirname + '/views/solutionsIndex.html')
-})
+// // solutions index
+// app.get('/problems/:id/solutions', (req, res) => {
+//     res.sendFile(__dirname + '/views/solutionsIndex.html')
+// })
 
 //solution profile
-app.get('/problems/:id/solutions/:id', (req, res) => {
+app.get('/problems/:id/solutions/:solutionId', (req, res) => {
     res.sendFile(__dirname + '/views/solutionsShow.html')
 })
 
@@ -125,7 +125,7 @@ app.get('/api/solutions', (req, res) => {
 })
 
 // Solutions Show
-app.get('/api/solutions/:id', (req, res) => {
+app.get('/api/solutions/:solutionId', (req, res) => {
     // console.log('sanity check', req.params)
     db.Solution.findById(req.params.id, (err, foundSolution) => {
         if (err) {
@@ -147,7 +147,7 @@ app.post('/api/solutions', (req, res) => {
 })
 
 // update solution
-app.put('/api/solutions/:id/edit', (req, res) => {
+app.put('/api/solutions/:solutionsId/edit', (req, res) => {
     // find by ID
     db.Solution.findById(req.params.id, (err, foundSolution) => {
         if (err) {
@@ -168,7 +168,7 @@ app.put('/api/solutions/:id/edit', (req, res) => {
 })
 
 // delete solution
-app.delete('/api/solutions/:id', (req, res) => {
+app.delete('/api/solutions/:solutionId', (req, res) => {
     db.Solution.findByIdAndDelete(req.params.id, (err, deletedSolution) => {
         if (err) {
             return res.status(400).json({ status: 400, error: 'please try agin' })
