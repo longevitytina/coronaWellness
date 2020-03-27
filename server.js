@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 4000;
-const session
 
 const db = require('./models')
 
@@ -193,7 +192,7 @@ app.put('/api/problems/:id/solutions/:solutionId', (req, res) => {
     db.Solution.findById(req.params.solutionId, (err, foundSolutions) => {
         if (err) {
             console.log(err)
-        
+
         }
         console.log('foundSolutions:', foundSolutions)
 
@@ -212,9 +211,9 @@ app.put('/api/problems/:id/solutions/:solutionId', (req, res) => {
                 if (err) {
                     return res.status(400).json({ status: 400, error: 'saving problem' })
                 }
-            res.json(foundProblem)
-           
-             })
+                res.json(foundProblem)
+
+            })
         })
     })
 })
