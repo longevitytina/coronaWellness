@@ -19,22 +19,18 @@ getProblemSolutions()
 function render(problemObject) {
     console.log('Rendering Problems Object', problemObject)
     const solutionsTemplate = getSolutionsTemplate(problemObject.solutions)
-    console.log(solutionsTemplate)
-    for (let i = 0; i < solutionsTemplate.length; i++) {
-      let htmlElement = document.createElement('div')
-      htmlElement.innerHTML = solutionsTemplate[i]
-      document.body.appendChild(htmlElement)
+    problemSolutions.innerHTML = ''
+    problemSolutions.insertAdjacentHTML('beforeend', solutionsTemplate)
   }
-}
+
 
 
 function getSolutionsTemplate(solutions) {
-  let solutionsHtml = []
   console.log('Getting Solutions Object', solutions.length)
   //solutions.map((solution) => getSolutionsTemplate(solution)).join('')
   for (let i = 0; i < solutions.length; i++) {
     console.log(solutions[i])
-  let htmlString =  `
+  return `
         <div class="col-md-4 mb-4">
         <div id="${solutions[i]._id}" class="card">
           <img src="${solutions[i].image}" class="card-img-top" alt="${solutions[i].name}" />
@@ -48,7 +44,6 @@ function getSolutionsTemplate(solutions) {
         </div>
       </div>
         `
-        solutionsHtml.push(htmlString)
+      
   }
-  console.log(solutionsHtml)
-}
+} 
