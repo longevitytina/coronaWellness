@@ -31,7 +31,7 @@ function getSolutionTemplate(solution) {
               ${solution.name}
             </h5>
             <p class="card-text">${solution.description}</p>
-            <a href="/problems/${problemId}/solutions/${solution._id} class="btn btn-primary float-right">Edit</a>
+            <a href="/problems/${problemId}/solutions/${solution._id}" class="btn btn-primary float-right">Edit</a>
             <button id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
           </div>
         </div>
