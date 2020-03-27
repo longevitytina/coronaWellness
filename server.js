@@ -134,18 +134,18 @@ app.get("/api/solutions", (req, res) => {
 })
 
 // Solutions Show
-app.get("/api/solutions/:solutionId", (req, res) => {
-  // console.log('sanity check', req.params)
-  db.Solution.findById(req.params.id, (err, foundSolution) => {
-    if (err) {
-      return res
-        .status(400)
-        .json({ status: 400, error: "Something went wrong, please try again" })
-    }
+// app.get("/api/solutions/:solutionId", (req, res) => {
+//   // console.log('sanity check', req.params)
+//   db.Solution.findById(req.params.id, (err, foundSolution) => {
+//     if (err) {
+//       return res
+//         .status(400)
+//         .json({ status: 400, error: "Something went wrong, please try again" })
+//     }
 
-    res.json(foundSolution)
-  })
-})
+//     res.json(foundSolution)
+//   })
+// })
 
 // Solution create
 app.post("/api/solutions", (req, res) => {
@@ -160,7 +160,8 @@ app.post("/api/solutions", (req, res) => {
 })
 
 // update solution
-app.put("/api/problems/:id/solutions/:solutionsId", (req, res) => {
+app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
+  console.log("connected?")
   db.Problem.findById(req.params.id, (err, foundProblem) => {
     if (err) {
       return res.status(400).json({ status: 400, error: "please try agin" })

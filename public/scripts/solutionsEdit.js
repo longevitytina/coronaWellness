@@ -5,7 +5,7 @@ const solutions = document.getElementById("solutions")
 const solutionId = window.location.pathname.split("/")[4]
 const problemId = window.location.pathname.split("/")[2]
 
-// get all solutions
+// get one solutions
 fetch(`${API_BASE}/problems/${problemId}/solutions/${solutionId}`)
   .then((stream) => stream.json())
   .then((res) => render(res))
