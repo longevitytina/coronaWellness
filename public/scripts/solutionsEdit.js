@@ -5,7 +5,7 @@ const solutions = document.getElementById("solutions")
 const solutionForm = document.getElementById("editSolution")
 const solutionId = window.location.pathname.split("/")[4]
 const problemId = window.location.pathname.split("/")[2]
-
+const saveButton = document.getElementById("save")
 // get one solutions
 fetch(`${API_BASE}/problems/${problemId}`)
   .then((stream) => stream.json())
@@ -31,9 +31,9 @@ function updateForm(problem) {
 }
 }
 // Listen/Handle New Post Submit
-solutionForm.addEventListener("save", (event) => {
+document.addEventListener("submit", (event) => {
   event.preventDefault()
-
+  console.log("clicked")
   const name = document.getElementById("name")
   const description = document.getElementById("description")
   const image = document.getElementById("image")
