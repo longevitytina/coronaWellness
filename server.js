@@ -168,15 +168,43 @@ app.put('/api/solutions/:solutionsId/edit', (req, res) => {
 })
 
 // delete solution
-app.delete('/api/solutions/:solutionId', (req, res) => {
-    db.Solution.findByIdAndDelete(req.params.id, (err, deletedSolution) => {
-        if (err) {
-            return res.status(400).json({ status: 400, error: 'please try agin' })
-        }
-        res.json(deletedSolution)
-    })
-})
+// app.delete('/api/problems/:id/solutions/:solutionId', (req, res) => {
+//     db.Solution.findByIdAndDelete(req.params.id, (err, deletedSolution) => {
+//         if (err) {
+//             return res.status(400).json({ status: 400, error: 'please try agin' })
+//         }
+//         res.json(deletedSolution)
+//     })
+// })
 
+app.delete('/api/problems/:id/solutions/:solutionId', (req, res) => {
+    // Find Problem By ID
+    db.Problem.findById(req.params.id, (err, foundProblem) => {
+      if (err) {
+        return res.status(400).json({status: 400, error: 'Something went wrong, please try again'});
+      }
+  
+      // Find Solution By ID
+      const solutionToDelete = foundProblem.solutions.id(req.params.solutionId);
+  
+      if (!solutionToDelete) {
+        return res.status(400).json({status: 400, error: 'Could not find post'});
+      }
+  
+      // Delete solution from the problem Record
+      solutionToDelete.remove();
+  
+      // Save Modified Problem
+      foundProblem.save((err, savedProblem) => {
+        if (err) {
+          return res.status(400).json({status: 400, error: 'Something went wrong, please try again'});
+        }
+  
+        res.json(savedProblem);
+      });
+    });
+  });
+  
 
 
 // ---------------------------------associated paths
