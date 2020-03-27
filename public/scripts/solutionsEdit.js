@@ -7,25 +7,29 @@ const solutionId = window.location.pathname.split("/")[4]
 const problemId = window.location.pathname.split("/")[2]
 
 // get one solutions
-fetch(`${API_BASE}/problems/${problemId}/solutions/${solutionId}`)
+fetch(`${API_BASE}/problems/${problemId}`)
   .then((stream) => stream.json())
-  .then((res) => render(res))
+  .then((res) => updateForm(res))
   .catch((err) => console.log(err))
 
 // update form values
-function updateForm(solution) {
-  console.log("solution = ", solution)
+function updateForm(problem) {
   const nameInput = document.getElementById("name")
   const descriptionInput = document.getElementById("description")
   const imageInput = document.getElementById("image")
   const linkInput = document.getElementById("link")
 
-  nameInput.value = solution.name
-  descriptionInput.value = solution.description
-  imageInput.value = solution.image
-  linkInput.value = solution.link
-}
+  for( let i = 0; i < problem.solutions.length; i++) {
+    if (solutionId === problem.solutions[i]._id) {
+  console.log("problem = ", problem)
 
+  nameInput.value = problem.solutions[i].name
+  descriptionInput.value = problem.solutions[i].description
+  imageInput.value = problem.solutions[i].image
+  linkInput.value = problem.solutions[i].link
+}
+}
+}
 // Listen/Handle New Post Submit
 solutionForm.addEventListener("save", (event) => {
   event.preventDefault()
