@@ -192,7 +192,7 @@ app.put('/api/problems/:id/solutions/:solutionId', (req, res) => {
     db.Solution.findById(req.params.solutionId, (err, foundSolutions) => {
         if (err) {
             console.log(err)
-        
+
         }
         console.log('foundSolutions:', foundSolutions)
 
@@ -211,9 +211,9 @@ app.put('/api/problems/:id/solutions/:solutionId', (req, res) => {
                 if (err) {
                     return res.status(400).json({ status: 400, error: 'saving problem' })
                 }
-            res.json(foundProblem)
-           
-             })
+                res.json(foundProblem)
+
+            })
         })
     })
 })

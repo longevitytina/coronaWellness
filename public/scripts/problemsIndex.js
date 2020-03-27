@@ -1,22 +1,20 @@
-console.log('sanity check')
-const API_BASE = '/api'
-const problems = document.getElementById('problems')
+const API_BASE = "/api"
+const problems = document.getElementById("problems")
 
 // get all problems
 fetch(`${API_BASE}/problems`)
   .then((stream) => stream.json())
-  .then(res => render(res))
-  .catch((err) => console.log(err));
+  .then((res) => render(res))
+  .catch((err) => console.log(err))
 
 function render(problemsArray) {
-  console.log('Rendering Problems Array', problemsArray)
-  const problemTemplate = problemsArray.map((problem) => getProblemTemplate(problem)).join('');
-  problems.insertAdjacentHTML('beforeend', problemTemplate)
+  const problemTemplate = problemsArray
+    .map((problem) => getProblemTemplate(problem))
+    .join("")
+  problems.insertAdjacentHTML("beforeend", problemTemplate)
 }
 
-// console.log('prob:', problems)
 function getProblemTemplate(problem) {
-  console.log('Getting Problem Template');
   return `
         <div class="col-md-4 mb-4">
         <div id="${problem._id}" class="card">
