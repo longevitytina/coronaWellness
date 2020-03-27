@@ -5,35 +5,35 @@ const problems = [
     name: 'Fatigue',
     description: 'Feeling overtired, with low energy and a strong desire to sleep that interferes with normal daily activities.',
     image: 'https://placebear.com/200/300',
-    // solutions: [id: 1, id: 2]
+    solutions: [],
 
   },
   {
     name: 'Back pain',
     description: 'Physical discomfort occurring anywhere on the spine or back, ranging from mild to disabling.',
     image: 'https://placebear.com/200/300',
-    // solutions: [Solution.schema],
+    solutions: [],
 
   },
   {
     name: 'Anxiety',
     description: 'A mental health disorder characterized by feelings of worry, anxiety, or fear that are strong enough to interfere with ones daily activities.',
     image: 'https://placebear.com/200/300',
-    // solutions: [solutions[0]],
+    solutions: [],
 
   },
   {
     name: 'Depression',
     description: 'A mental health disorder characterized by persistently depressed mood or loss of interest in activities, causing significant impairment in daily life.',
     image: 'https://placebear.com/200/300',
-    // solutions: [Solution.schema],
+    solutions: [],
 
   },
   {
     name: 'Stress',
     description: 'Stress is a feeling of emotional or physical tension.',
     image: 'https://placebear.com/200/300',
-    // solutions: [Solution.schema],
+    solutions: [], 
 
   },
 ]
@@ -53,8 +53,6 @@ const solutions = [
     description: 'keeps the muscles flexible, strong, and healthy ',
     image: 'https://picsum.photos/200/300',
     link: 'https://www.youtube.com/watch?v=Ji9vKgfWK88'
-
-
   },
   {
     // id: "3",
