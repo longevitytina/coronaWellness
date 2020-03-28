@@ -4,7 +4,6 @@ const problemId = window.location.pathname.split("/")[2]
 // const solutionEditId = window.location.pathname.split("/")[4]
 const addButton = document.getElementById("addBtn")
 
-
 // get a problem
 function getProblemSolutions() {
   fetch(`${API_BASE}/problems/${problemId}`)
@@ -15,12 +14,11 @@ function getProblemSolutions() {
 
 getProblemSolutions()
 
-function render(problemObject) {
-  const solutionsTemplates = problemObject.solutions
+function render(problemsObject) {
+  const solutionsTemplates = problemsObject.solutions
     .map(getSolutionTemplate)
     .join("")
-  problemSolutions.innerHTML = ""
-  problemSolutions.insertAdjacentHTML("afterend", solutionsTemplates)
+  problemSolutions.innerHTML = solutionsTemplates
 }
 
 function getSolutionTemplate(solution) {
@@ -36,19 +34,12 @@ function getSolutionTemplate(solution) {
             </h5>
             <p class="card-text">${solution.description}</p>
             <a href="/problems/${problemId}/solutions/${solution._id}" class="btn btn-primary float-right">Edit</a>
-            <button id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
+            <button onclick="deleteSolution(event)" id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
           </div>
         </div>
       </div>
         `
 }
-
-// Delete a solution
-document.addEventListener("delete", (event) => {
-  if (event.target.classList.contains("delete-solution")) {
-    deleteSolution(event)
-  }
-})
 
 function deleteSolution(event) {
   const solutionId = event.target.parentNode.parentNode.id
@@ -62,7 +53,7 @@ function deleteSolution(event) {
       console.log(res)
       // Rerender with updated problem page
       console.log("getting problems solutions")
-      getProblemSolutions()
+      render(res)
     })
     .catch((err) => console.log(err))
 }
@@ -74,5 +65,4 @@ addButton.addEventListener(
     console.log("clicked")
     window.location = `/problems/${problemId}/add`
   }
-  //if clicked redirect to form
 )
