@@ -61,7 +61,7 @@ function deleteSolution(event) {
       console.log(res)
       // Rerender with updated problem page
       console.log("getting problems solutions")
-      getProblemSolutions()
+      render(res)
     })
     .catch((err) => console.log(err))
 }
