@@ -4,7 +4,6 @@ const problemId = window.location.pathname.split("/")[2]
 // const solutionEditId = window.location.pathname.split("/")[4]
 const addButton = document.getElementById("addBtn")
 
-
 // get a problem
 function getProblemSolutions() {
   fetch(`${API_BASE}/problems/${problemId}`)
@@ -43,7 +42,8 @@ function getSolutionTemplate(solution) {
 }
 
 // Delete a solution
-document.addEventListener("delete", (event) => {
+document.addEventListener("click", (event) => {
+  event.preventDefault()
   if (event.target.classList.contains("delete-solution")) {
     deleteSolution(event)
   }
@@ -73,5 +73,4 @@ addButton.addEventListener(
     console.log("clicked")
     window.location = `/problems/${problemId}/add`
   }
-  //if clicked redirect to form
 )
