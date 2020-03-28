@@ -34,20 +34,12 @@ function getSolutionTemplate(solution) {
             </h5>
             <p class="card-text">${solution.description}</p>
             <a href="/problems/${problemId}/solutions/${solution._id}" class="btn btn-primary float-right">Edit</a>
-            <button id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
+            <button onclick="deleteSolution(event)" id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
           </div>
         </div>
       </div>
         `
 }
-
-// Delete a solution
-document.addEventListener("click", (event) => {
-  event.preventDefault()
-  if (event.target.classList.contains("delete-solution")) {
-    deleteSolution(event)
-  }
-})
 
 function deleteSolution(event) {
   const solutionId = event.target.parentNode.parentNode.id
