@@ -4,6 +4,7 @@ const problemId = window.location.pathname.split("/")[2]
 // const solutionEditId = window.location.pathname.split("/")[4]
 const addButton = document.getElementById("addBtn")
 
+
 // get a problem
 function getProblemSolutions() {
   fetch(`${API_BASE}/problems/${problemId}`)
@@ -43,7 +44,7 @@ function getSolutionTemplate(solution) {
 }
 
 // Delete a solution
-problemSolutions.addEventListener("click", (event) => {
+document.addEventListener("delete", (event) => {
   if (event.target.classList.contains("delete-solution")) {
     deleteSolution(event)
   }
