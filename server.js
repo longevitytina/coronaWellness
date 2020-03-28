@@ -177,36 +177,24 @@ app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
         .status(400)
         .json({ status: 400, error: "Could not find solution" })
     }
-    console.log(foundSolution)
+    console.log(solutionToUpdate)
     // update record info
-    foundSolution.name = req.body.name
-    foundSolution.description = req.body.description
-    foundSolution.image = req.body.image
-    foundSolution.link = req.body.link
+    solutionToUpdate.name = req.body.name
+    solutionToUpdate.description = req.body.description
+    solutionToUpdate.image = req.body.image
+    solutionToUpdate.link = req.body.link
     console.log(req.body.name)
     // save modified Solution
     foundProblem.save((err, savedProblem) => {
       if (err) {
         return res.status(400).json({ status: 400, error: "please try agin" })
       }
-      db.Solution.findByIdAndUpdate(
-        req.params.solutionId,
-        req.body,
-        { new: true },
-        (err, updatedSolution) => {
-          if (err) {
-            return res.status(400).json({
-              status: 400,
-              error: "Something went wrong, please try again",
-            })
-          }
-
-          res.json(updatedSolution)
-        }
-      )
+      res.json(savedProblem) 
     })
   })
+
 })
+
 
 // delete solution
 // app.delete('/api/problems/:id/solutions/:solutionId', (req, res) => {
