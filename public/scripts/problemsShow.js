@@ -15,12 +15,11 @@ function getProblemSolutions() {
 
 getProblemSolutions()
 
-function render(problemObject) {
-  const solutionsTemplates = problemObject.solutions
+function render(problemsObject) {
+  const solutionsTemplates = problemsObject.solutions
     .map(getSolutionTemplate)
     .join("")
-  problemSolutions.innerHTML = ""
-  problemSolutions.insertAdjacentHTML("afterend", solutionsTemplates)
+  problemSolutions.innerHTML = solutionsTemplates
 }
 
 function getSolutionTemplate(solution) {
