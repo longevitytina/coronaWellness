@@ -2,6 +2,7 @@ const API_BASE = "/api"
 const problemSolutions = document.getElementById("problemSolutions")
 const problemId = window.location.pathname.split("/")[2]
 // const solutionEditId = window.location.pathname.split("/")[4]
+const addButton = document.getElementById("addBtn")
 
 // get a problem
 function getProblemSolutions() {
@@ -18,12 +19,14 @@ function render(problemObject) {
     .map(getSolutionTemplate)
     .join("")
   problemSolutions.innerHTML = ""
-  problemSolutions.insertAdjacentHTML("beforeend", solutionsTemplates)
+  problemSolutions.insertAdjacentHTML("afterend", solutionsTemplates)
 }
 
 function getSolutionTemplate(solution) {
   return `
         <div class="col-md-4 mb-4">
+
+
         <div id="${solution._id}" class="card">
           <img src="${solution.image}" class="card-img-top" alt="${solution.name}" />
           <div class="card-body">
@@ -62,3 +65,13 @@ function deleteSolution(event) {
     })
     .catch((err) => console.log(err))
 }
+
+addButton.addEventListener(
+  "click",
+
+  (event) => {
+    console.log("clicked")
+    window.location = `/problems/${problemId}/add`
+  }
+  //if clicked redirect to form
+)
