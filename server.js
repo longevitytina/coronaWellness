@@ -50,6 +50,11 @@ app.get("/problems/:id/solutions/:solutionId", (req, res) => {
   res.sendFile(__dirname + "/views/solutionsEdit.html")
 })
 
+// solution add
+app.get("/problems/:id/add", (req, res) => {
+  res.sendFile(__dirname + "/views/solutionAdd.html")
+})
+
 // ---------------------- API ROUTES
 
 //  Problems Index
@@ -189,12 +194,10 @@ app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
       if (err) {
         return res.status(400).json({ status: 400, error: "please try agin" })
       }
-      res.json(savedProblem) 
+      res.json(savedProblem)
     })
   })
-
 })
-
 
 // delete solution
 // app.delete('/api/problems/:id/solutions/:solutionId', (req, res) => {
