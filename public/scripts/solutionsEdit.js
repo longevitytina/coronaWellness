@@ -31,9 +31,9 @@ function updateForm(problem) {
 }
 }
 // Listen/Handle New Post Submit
-document.addEventListener("submit", (event) => {
+solutionForm.addEventListener("submit", (event) => {
   event.preventDefault()
-  console.log("clicked")
+  console.log("solution form clicked")
   const name = document.getElementById("name")
   const description = document.getElementById("description")
   const image = document.getElementById("image")
