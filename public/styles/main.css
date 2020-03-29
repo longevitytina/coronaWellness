@@ -1,3 +1,32 @@
+* {
+  font-family: "Special Elite", cursive;
+}
 body {
-    background-color: aqua;
+  background-color: rgba(208, 202, 202, 0.844);
+}
+
+body.home {
+  background-color: transparent;
+}
+
+.home .container {
+  background-image: url("../images/homeBackground.png");
+  background-size: cover;
+  height: 100vh;
+  margin: unset;
+  max-width: unset;
+  text-align: center;
+}
+
+.navbar {
+  background-image: url("../images/navbar.png");
+  background-size: 60vw 60px;
+  background-repeat-y: no-repeat;
+}
+
+.navbar-light .navbar-brand {
+  color: white;
+  padding-left: 5px;
+  position: relative;
+  top: -8px;
 }

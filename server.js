@@ -95,7 +95,7 @@ app.post("/api/problems", (req, res) => {
   })
 })
 
-// update a problem 
+// update a problem
 app.put("/api/problems/:id/edit", (req, res) => {
   // find by ID
   db.Problem.findById(req.params.id, (err, foundProblem) => {
@@ -115,7 +115,6 @@ app.put("/api/problems/:id/edit", (req, res) => {
     })
   })
 })
-
 
 // delete problem
 app.delete("/api/problems/:id", (req, res) => {
@@ -166,29 +165,40 @@ app.post("/api/solutions", (req, res) => {
 })
 
 // adds a solution in a specific problem
-app.post('/api/problems/:id', (req, res) => {
+app.post("/api/problems/:id", (req, res) => {
   db.Solution.create(req.body, (err, newSolution) => {
     if (err) {
-      return res.status(400).json({status: 400, error: 'Something went wrong, please try again'})
+      return res
+        .status(400)
+        .json({ status: 400, error: "Something went wrong, please try again" })
     }
 
     db.Problem.findById(req.params.id, (err, foundProblem) => {
       if (err) {
-        return res.status(400).json({status: 400, error: 'Something went wrong, please try again'})
+        return res
+          .status(400)
+          .json({
+            status: 400,
+            error: "Something went wrong, please try again",
+          })
       }
 
       foundProblem.solutions.push(newSolution)
 
       foundProblem.save((err, savedProblem) => {
         if (err) {
-          return res.status(400).json({status: 400, error: 'Something went wrong, please try again'})
+          return res
+            .status(400)
+            .json({
+              status: 400,
+              error: "Something went wrong, please try again",
+            })
         }
         res.json(newSolution)
       })
     })
   })
 })
-
 
 // update solution in a problem
 app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
@@ -271,7 +281,7 @@ app.delete("/api/problems/:id/solutions/:solutionId", (req, res) => {
 // ---------------------------------associated paths
 
 //Creates solution index for specific problem
-app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
+app.post("/api/problems/:id/solutions/:solutionId", (req, res) => {
   // db.Solution.create(req.body, (err, newSolution) => {
   //     if (err) {
   //         return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
