@@ -39,7 +39,7 @@ const problems = [
 
 const solutions = [
   {
-    // id: "1",
+    id: "1",
     name: "Crystal",
     description: "This white crystal is considered a “master healer.",
     image: "https://picsum.photos/200/300",
@@ -70,46 +70,27 @@ const solutions = [
 
 // Delete All Problems
 console.log("Deleting all problems...")
-
-db.Problem.deleteMany({}, (err, result) => {
-  if (err) {
-    console.log(err)
-    process.exit()
-  }
-
-  console.log(`Successfully deleted ${result.deletedCount} problems.`)
-
-  // Create New Problems
-  console.log("Creating new problems...")
-
-  db.Problem.create(problems, (err, newProblems) => {
-    if (err) {
-      console.log(err)
-      process.exit()
-    }
-
-    console.log(`Successfully created ${newProblems.length} problems.`)
-    console.log(newProblems)
-
-    console.log("Deleting all solutions...")
-
-    db.Solution.deleteMany({}, (err, result) => {
-      if (err) {
-        console.log(err)
-        process.exit()
-      }
-      // Create New Solutions
-      console.log("Creating new solutions...")
-      db.Solution.create(solutions, (err, newSolutions) => {
-        if (err) {
-          console.log(err)
-          process.exit()
-        }
-
-        console.log(`Successfully created ${newSolutions.length} solutions.`)
-        console.log(newSolutions)
-        process.exit()
-      })
-    })
+db.Problem.deleteMany({})
+  .then((results) => {
+    console.log(`Successfully deleted ${results.deletedCount} problems.`)
+    return db.Problem.create(problems)
   })
-})
+  .then((newProblems) => {
+    console.log(`Successfully created ${newProblems.length} problems.`)
+    return db.Solution.deleteMany({})
+  })
+  .then((_results) => {
+    console.log("Deleting all solutions...")
+    return db.Solution.create(solutions)
+  })
+  .then((newSolutions) => {
+    console.log(`Successfully created ${newSolutions.length} solutions.`)
+    process.exit()
+  })
+  .catch((err) => console.log(err))
+
+// //problem 1
+// //find by id
+// //find sol by filter name
+// //insert into proclem solution array
+// //save

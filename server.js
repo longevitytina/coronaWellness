@@ -175,24 +175,20 @@ app.post("/api/problems/:id", (req, res) => {
 
     db.Problem.findById(req.params.id, (err, foundProblem) => {
       if (err) {
-        return res
-          .status(400)
-          .json({
-            status: 400,
-            error: "Something went wrong, please try again",
-          })
+        return res.status(400).json({
+          status: 400,
+          error: "Something went wrong, please try again",
+        })
       }
 
       foundProblem.solutions.push(newSolution)
 
       foundProblem.save((err, savedProblem) => {
         if (err) {
-          return res
-            .status(400)
-            .json({
-              status: 400,
-              error: "Something went wrong, please try again",
-            })
+          return res.status(400).json({
+            status: 400,
+            error: "Something went wrong, please try again",
+          })
         }
         res.json(newSolution)
       })
