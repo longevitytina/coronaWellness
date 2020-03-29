@@ -26,15 +26,15 @@ function getSolutionTemplate(solution) {
         <div class="col-md-4 mb-4">
 
 
-        <div id="${solution._id}" class="card">
+        <div id="${solution._id}" class="card  shadow-lg p-3 mb-5 bg-white rounded">
           <img src="${solution.image}" class="card-img-top" alt="${solution.name}" />
           <div class="card-body">
             <h5 class="card-title">
               ${solution.name}
             </h5>
             <p class="card-text">${solution.description}</p>
-            <a href="/problems/${problemId}/solutions/${solution._id}" class="btn btn-primary float-right">Edit</a>
-            <button onclick="deleteSolution(event)" id="deleteBtn" class="btn btn-sm btn-danger delete-solution float-right mr-2" type="button">Delete Solution</button>
+            <a href="/problems/${problemId}/solutions/${solution._id}" class="btn btn-sm btn-outline-dark float-right">Edit</a>
+            <button onclick="deleteSolution(event)" id="deleteBtn" class="btn btn-sm btn-outline-danger delete-solution float-right mr-2" type="button">Delete</button>
           </div>
         </div>
       </div>

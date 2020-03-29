@@ -19,9 +19,10 @@ body.home {
 }
 
 .navbar {
-  background-image: url("../images/navbar.png");
-  background-size: 60vw 60px;
+  background-image: url("../images/navbar1.png");
+  background-size: 61vw 82px;
   background-repeat-y: no-repeat;
+  font-size: 20px;
 }
 
 .navbar-light .navbar-brand {
@@ -29,4 +30,11 @@ body.home {
   padding-left: 5px;
   position: relative;
   top: -8px;
+}
+
+.container h1 {
+  text-align: center;
+  margin-bottom: 0;
+  padding-top: 20px;
+  padding-bottom: 0;
 }
