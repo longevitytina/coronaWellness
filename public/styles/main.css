@@ -1,3 +1,15 @@
+* {
+  font-family: "Special Elite", cursive;
+}
 body {
-    background-color: #ADB2B2;
+  background-color: rgba(208, 202, 202, 0.844);
+}
+
+.home {
+  background-image: url("../images/homeBackground.png");
+  background-size: cover;
+  height: 100vh;
+  margin: unset;
+  max-width: unset;
+  text-align: center;
 }
