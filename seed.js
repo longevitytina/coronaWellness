@@ -2,11 +2,14 @@ const db = require("./models")
 
 const problems = [
   {
-    name: "Fatigue",
-    description:
-      "Feeling overtired, with low energy and a strong desire to sleep that interferes with normal daily activities.",
-    image: "../images/brainPain.jpeg",
-    solutions: [],
+    properties: {
+      name: "Fatigue",
+      description:
+        "Feeling overtired, with low energy and a strong desire to sleep that interferes with normal daily activities.",
+      image: "../images/brainPain.jpeg",
+      solutions: [],
+    },
+    solutionNames: ["Energy purification", "Crystal"],
   },
   {
     name: "Back pain",
@@ -68,29 +71,50 @@ const solutions = [
   },
 ]
 
-// Delete All Problems
-console.log("Deleting all problems...")
+// console.log("Deleting all problems...")
+// db.Problem.deleteMany({})
+//   .then((results) => {
+//     console.log(`Successfully deleted ${results.deletedCount} problems.`)
+//     return db.Problem.create(problems)
+//   })
+//   .then((newProblems) => {
+//     console.log(`Successfully created ${newProblems.length} problems.`)
+//     return db.Solution.deleteMany({})
+//   })
+//   .then((_results) => {
+//     console.log("Deleting all solutions...")
+//     return db.Solution.create(solutions)
+//   })
+//   .then((newSolutions) => {
+//     console.log(`Successfully created ${newSolutions.length} solutions.`)
+//     process.exit()
+//   })
+//   .catch((err) => console.log(err))
+
+// {
+//   properties: {
+//     name: "Fatigue",
+//     description:
+//       "Feeling overtired, with low energy and a strong desire to sleep that interferes with normal daily activities.",
+//     image: "../images/brainPain.jpeg",
+//     solutions: [],
+//   },
+//   solutionNames: ["Energy purification", "Crystal"],
+// },
+
+const exampleProblem = problems[0]
 db.Problem.deleteMany({})
+  .then((_result) => db.Solution.deleteMany())
+  .then(() => db.Solution.create(solutions))
+  .then(() => db.Solution.find({ name: exampleProblem.solutionNames }))
   .then((results) => {
-    console.log(`Successfully deleted ${results.deletedCount} problems.`)
-    return db.Problem.create(problems)
+    exampleProblem.properties.solutions = results
+    return db.Problem.create(exampleProblem.properties)
   })
-  .then((newProblems) => {
-    console.log(`Successfully created ${newProblems.length} problems.`)
-    return db.Solution.deleteMany({})
-  })
-  .then((_results) => {
-    console.log("Deleting all solutions...")
-    return db.Solution.create(solutions)
-  })
-  .then((newSolutions) => {
-    console.log(`Successfully created ${newSolutions.length} solutions.`)
-    process.exit()
-  })
-  .catch((err) => console.log(err))
+  .then((result) => console.log(result))
 
 // //problem 1
-// //find by id
 // //find sol by filter name
+// //find by id
 // //insert into proclem solution array
 // //save
