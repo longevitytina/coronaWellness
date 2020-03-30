@@ -40,10 +40,6 @@ app.get("/problems/:id", (req, res) => {
   res.sendFile(__dirname + "/views/problemsShow.html")
 })
 
-// // solutions index
-// app.get('/problems/:id/solutions', (req, res) => {
-//     res.sendFile(__dirname + '/views/solutionsIndex.html')
-// })
 
 //solution edit
 app.get("/problems/:id/solutions/:solutionId", (req, res) => {
@@ -138,19 +134,6 @@ app.get("/api/solutions", (req, res) => {
   })
 })
 
-// Solutions Show
-// app.get("/api/solutions/:solutionId", (req, res) => {
-//   // console.log('sanity check', req.params)
-//   db.Solution.findById(req.params.id, (err, foundSolution) => {
-//     if (err) {
-//       return res
-//         .status(400)
-//         .json({ status: 400, error: "Something went wrong, please try again" })
-//     }
-
-//     res.json(foundSolution)
-//   })
-// })
 
 // Solution create
 app.post("/api/solutions", (req, res) => {
@@ -204,11 +187,7 @@ app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
       return res.status(400).json({ status: 400, error: "please try agin" })
     }
     const solutionToUpdate = foundProblem.solutions.id(req.params.solutionId)
-    // find solution by ID
-    //   db.Solution.findById(req.params.id, (err, foundSolution) => {
-    //     if (err) {
-    //       return res.status(400).json({ status: 400, error: "please try agin" })
-    //     }
+ 
     if (!solutionToUpdate) {
       return res
         .status(400)
@@ -231,15 +210,6 @@ app.put("/api/problems/:id/solutions/:solutionId", (req, res) => {
   })
 })
 
-// delete solution
-// app.delete('/api/problems/:id/solutions/:solutionId', (req, res) => {
-//     db.Solution.findByIdAndDelete(req.params.id, (err, deletedSolution) => {
-//         if (err) {
-//             return res.status(400).json({ status: 400, error: 'please try agin' })
-//         }
-//         res.json(deletedSolution)
-//     })
-// })
 
 app.delete("/api/problems/:id/solutions/:solutionId", (req, res) => {
   // Find Problem By ID
@@ -278,10 +248,6 @@ app.delete("/api/problems/:id/solutions/:solutionId", (req, res) => {
 
 //Creates solution index for specific problem
 app.post("/api/problems/:id/solutions/:solutionId", (req, res) => {
-  // db.Solution.create(req.body, (err, newSolution) => {
-  //     if (err) {
-  //         return res.status(400).json({ status: 400, error: 'Something went wrong, please try again' })
-  //     }
 
   db.Solution.findById(req.params.solutionId, (err, foundSolutions) => {
     if (err) {
@@ -310,10 +276,6 @@ app.post("/api/problems/:id/solutions/:solutionId", (req, res) => {
   })
 })
 
-// Problem/:id/solution
-//POST:create route for solution form
-// PUT: update route edit button
-//DELETE:
 
 // API endpoints: [
 //     { method: "GET", path: "/api", description: "homepage"},
