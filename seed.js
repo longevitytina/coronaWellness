@@ -48,7 +48,7 @@ const problems = [
       image: "../images/stress.jpg",
       solutions: [],
     },
-    solutionNames: ["Meditation", "Crystal"],
+    solutionNames: ["Meditation", "Crystal", "Pooping"],
   },
 ]
 
@@ -75,6 +75,14 @@ const solutions = [
     name: "Energy purification",
     description: "Cleansing the bad mojo out",
     image: "../images/energy.jpg",
+    link:
+      "https://www.energymuse.com/blog/how-to-remove-negative-energy-from-your-home",
+  },
+  {
+    name: "Pooping",
+    description: "Releases the bad mojo",
+    image:
+      "https://images.unsplash.com/photo-1525072124541-6237cc05f4f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2311&q=80",
     link:
       "https://www.energymuse.com/blog/how-to-remove-negative-energy-from-your-home",
   },
