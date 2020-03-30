@@ -195,5 +195,17 @@ The login page
 #### Sprint 4- pinterest API
 - Connecting pinterest 
 
+## References
+- MDN https://developer.mozilla.org/en-US/
+- getbootstrap.com
+- Heroku
+- Express city class code DEMO
+- Marc Maniez 
+- https://www.photopea.com/
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
+- https://gist.github.com/uupaa/f77d2bcf4dc7a294d109
+
+
+
 
 
