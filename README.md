@@ -184,6 +184,7 @@ The login page
 - Connect the files together
 - Start bootstrap template
 - Database setup
+- Organizing into MVC 
 
 #### Sprint 3 - March 27+
 - Authentication 
